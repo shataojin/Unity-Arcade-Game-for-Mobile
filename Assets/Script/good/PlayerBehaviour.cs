@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -29,6 +30,9 @@ public class PlayerBehaviour : MonoBehaviour
     public float jumpForce = 10.0f;
     //private bool isGrounded = true; // Initially set to true to indicate the player is on the ground.
 
+    private Rigidbody2D rb; // Rigidbody component for player physics
+
+    public float xPositionStar, yPositionStar;
 
     void Start()
     {
@@ -42,6 +46,10 @@ public class PlayerBehaviour : MonoBehaviour
         scoreManager = FindObjectOfType<ScoreManager>();
 
         InvokeRepeating("FireBullets", 0.0f, fireRate);
+
+        rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component on the player object
+
+        //transform.position = new Vector3(xPositionStar, yPositionStar, 0);
     }
 
     // Update is called once per frame
@@ -58,10 +66,16 @@ public class PlayerBehaviour : MonoBehaviour
 
         ClampPosition();
 
-        if (Input.GetKeyDown(KeyCode.L))
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    scoreManager.AddPoints(10); // Increase the score by 10 when 'L' key is pressed.
+        //}
+        if (transform.position.y<= boundary.max/2 && Input.GetKeyDown(KeyCode.Space))
         {
-                scoreManager.AddPoints(10); // Increase the score by 10 when 'L' key is pressed.
+                Jump();
+                Debug.Log("Space key pressed");
         }
+        
 
     }
 
@@ -125,5 +139,11 @@ public class PlayerBehaviour : MonoBehaviour
         {
             Debug.LogError("BulletManager is not assigned.");
         }
+    }
+
+    public void Jump()
+    {
+        Debug.Log("jump called");
+        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 }

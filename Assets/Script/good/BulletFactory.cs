@@ -5,16 +5,16 @@ using UnityEngine;
 [System.Serializable]
 public class BulletFactory : MonoBehaviour
 {
-    
+
     // Bullet Prefab
-   public GameObject bulletPrefab;
+    private GameObject bulletPrefab;
 
     // Sprite Textures
-    public Sprite playerBulletSprite;
-    // private Sprite enemyBulletSprite;
+    private Sprite playerBulletSprite;
+    private Sprite enemyBulletSprite;
 
     // Bullet Parent
-    public Transform bulletParent;
+    private Transform bulletParent;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +25,7 @@ public class BulletFactory : MonoBehaviour
     private void Initialize()
     {
         playerBulletSprite = Resources.Load<Sprite>("Sprites/Bullet");
-        //enemyBulletSprite = Resources.Load<Sprite>("Sprites/EnemySmallBullet");
+        enemyBulletSprite = Resources.Load<Sprite>("Sprites/Bullet");
         bulletPrefab = Resources.Load<GameObject>("Prefabs/Bullet");
         bulletParent = GameObject.Find("Bullets").transform;
     }
@@ -43,12 +43,12 @@ public class BulletFactory : MonoBehaviour
                 bullet.GetComponent<BulletBehaviour>().SetDirection(BulletDirection.RIGHT);
                 bullet.name = "PlayerBullet";
                 break;
-            //case BulletType.ENEMY:
-            //    bullet.GetComponent<SpriteRenderer>().sprite = enemyBulletSprite;
-            //    bullet.GetComponent<BulletBehaviour>().SetDirection(BulletDirection.LEFT);
-            //    bullet.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 180.0f);
-            //    bullet.name = "EnemyBullet";
-            //    break;
+            case BulletType.ENEMY:
+                bullet.GetComponent<SpriteRenderer>().sprite = enemyBulletSprite;
+                bullet.GetComponent<BulletBehaviour>().SetDirection(BulletDirection.LEFT);
+                bullet.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 180.0f);
+                bullet.name = "EnemyBullet";
+                break;
         }
 
         bullet.SetActive(false);

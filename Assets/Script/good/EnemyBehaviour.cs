@@ -13,7 +13,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     [Header("Bullet Properties")]
     public Transform bulletSpawnPoint;
-    public float fireRate = 0.2f;
+    public float fireRate = 0.5f;
     public float rotationAngle;
 
 
@@ -50,7 +50,7 @@ public class EnemyBehaviour : MonoBehaviour
         var verticalLength = screenBounds.max - screenBounds.min;
         transform.position = new Vector3(
             transform.position.x - horizontalSpeed * Time.deltaTime,
-            Mathf.PingPong(Time.time * verticalSpeed, verticalLength) + screenBounds.min,
+            transform.position.y,
             transform.position.z);
 
 
@@ -58,7 +58,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void CheckBounds()
     {
-        if (transform.position.x < screenBounds.min)
+        if (transform.position.x < screenBounds.left)
         {
             ResetEnemy();
         }
@@ -66,12 +66,12 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void ResetEnemy()
     {
-        //j:1, set new spawn location to screen right at random location
-        var RandomXPosition = Random.Range(screenBounds.left, screenBounds.right);
+        
+        var RandomXPosition = Random.Range(0, screenBounds.right);
         var RandomYPosition = Random.Range(screenBounds.min, screenBounds.max);
-        horizontalSpeed = Random.Range(1.0f, 5.0f);
+        horizontalSpeed = Random.Range(1.0f, 3.0f);
         verticalSpeed = Random.Range(0.0f, 4.0f);
-        transform.position = new Vector3(screenBounds.max+RandomXPosition, RandomYPosition, 0.0f);
+        transform.position = new Vector3(screenBounds.right + RandomXPosition, RandomYPosition, 0.0f);
 
         List<Color> colorList = new List<Color>() {Color.red, Color.yellow, Color.magenta, Color.cyan, Color.white, Color.white};
 

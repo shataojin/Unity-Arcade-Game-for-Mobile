@@ -12,7 +12,7 @@ public struct ScreenBounds
 }
 
 
-public class BulletBehaviour: MonoBehaviour
+public class BulletBehaviour : MonoBehaviour
 {
     [Header("Bullet Properties")]
     public BulletDirection bulletDirection;
@@ -25,11 +25,19 @@ public class BulletBehaviour: MonoBehaviour
     //added totation for bullet 
     public float rotationAngle = 0.0f;
 
+    public ScoreManager scoreManager;
+    public HealthManager healthManager;
+    public EnemyBehaviour enemyBehaviour;
+   // bool LoseHeathTrigger = false, AddScoreTrigger = false;
+
     void Start()
     {
         bulletManager = FindObjectOfType<BulletManager>();
         //added totation for bullet 
         transform.Rotate(0, 0, rotationAngle);
+        scoreManager= FindObjectOfType<ScoreManager>();
+        healthManager= FindObjectOfType<HealthManager>();
+        enemyBehaviour= FindObjectOfType<EnemyBehaviour>();
     }
 
     void Update()
@@ -75,12 +83,28 @@ public class BulletBehaviour: MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if ((bulletType == BulletType.PLAYER) ||
-            (bulletType == BulletType.ENEMY && other.gameObject.CompareTag("Player")))
+        if (other == null)
+        {
+            return; // Return early if 'other' is null to avoid potential errors.
+        }
+
+        if (bulletType == BulletType.PLAYER && other.gameObject.CompareTag("Enemy"))
         {
             bulletManager.ReturnBullet(this.gameObject, bulletType);
+            scoreManager.AddPoints(10);
+            enemyBehaviour.ResetEnemy();
+            //LoseHeathTrigger=true;
+            Debug.Log("added score resetEnemy triggered");
         }
-        
+
+        if (bulletType == BulletType.ENEMY && other.gameObject.CompareTag("Player"))
+        {
+            bulletManager.ReturnBullet(this.gameObject, bulletType);
+            healthManager.RemoveLastHealthObject();
+            //AddScoreTrigger=true;
+            Debug.Log("loseHealth triggered");
+        }
     }
+
 
 }
