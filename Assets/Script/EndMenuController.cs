@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class EndMenuController : MonoBehaviour
 {
+
     public void BackToMainMenu()
     {
 
@@ -14,8 +15,7 @@ public class EndMenuController : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("quit working");
-        Application.Quit();
+        SceneManager.LoadScene(2);
     }
 
 }

@@ -58,23 +58,24 @@
     <Analyzer Include="D:\unity\2022.3.10f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\good\BulletManager.cs" />
-    <Compile Include="Assets\Script\good\EndMenuController.cs" />
-    <Compile Include="Assets\Script\good\PlayerBehaviour.cs" />
-    <Compile Include="Assets\Script\good\BulletFactory.cs" />
-    <Compile Include="Assets\Script\good\MainMenuController.cs" />
-    <Compile Include="Assets\Script\good\BulletType.cs" />
-    <Compile Include="Assets\Script\good\BulletBehaviour.cs" />
-    <Compile Include="Assets\Script\good\BulletDirection.cs" />
-    <Compile Include="Assets\Script\good\healthManager.cs" />
-    <Compile Include="Assets\Script\good\ImageMover.cs" />
-    <Compile Include="Assets\Script\good\ScoreManagerEnd.cs" />
-    <Compile Include="Assets\Script\good\GameController.cs" />
-    <Compile Include="Assets\Script\good\Boundary.cs" />
-    <Compile Include="Assets\Script\good\BackgroundStarsBehaviour.cs" />
-    <Compile Include="Assets\Script\good\ScoreManager.cs" />
-    <Compile Include="Assets\Script\good\test use for change to end game.cs" />
-    <Compile Include="Assets\Script\good\EnemyBehaviour.cs" />
+    <Compile Include="Assets\Script\Boundary.cs" />
+    <Compile Include="Assets\Script\healthManager.cs" />
+    <Compile Include="Assets\Script\BulletFactory.cs" />
+    <Compile Include="Assets\Script\ImageMover.cs" />
+    <Compile Include="Assets\Script\ScoreManager.cs" />
+    <Compile Include="Assets\Script\BulletDirection.cs" />
+    <Compile Include="Assets\Script\BulletBehaviour.cs" />
+    <Compile Include="Assets\Script\BulletType.cs" />
+    <Compile Include="Assets\Script\MainMenuController.cs" />
+    <Compile Include="Assets\Script\EndMenuController.cs" />
+    <Compile Include="Assets\Script\ScoreManagerEnd.cs" />
+    <Compile Include="Assets\Script\GameController.cs" />
+    <Compile Include="Assets\Script\BulletManager.cs" />
+    <Compile Include="Assets\Script\SingleSound1.cs" />
+    <Compile Include="Assets\Script\EnemyBehaviour.cs" />
+    <Compile Include="Assets\Script\test use for change to end game.cs" />
+    <Compile Include="Assets\Script\PlayerBehaviour.cs" />
+    <Compile Include="Assets\Script\BackgroundStarsBehaviour.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

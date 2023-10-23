@@ -155,3 +155,5 @@ MonoBehaviour:
   rotationAngle: 0
   scoreManager: {fileID: 0}
   healthManager: {fileID: 0}
+  enemyBehaviour: {fileID: 0}
+  sound1: {fileID: 0}
